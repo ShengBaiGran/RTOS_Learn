@@ -1,11 +1,13 @@
 # Debug Workflow (VSCode + DAPLink)
 
 ## Build
+
 ```bash
 make -j8
 ```
 
 ## Flash and run
+
 ```bash
 openocd -f interface/cmsis-dap.cfg -f target/stm32g4x.cfg \
   -c "adapter speed 1000" \
@@ -13,11 +15,12 @@ openocd -f interface/cmsis-dap.cfg -f target/stm32g4x.cfg \
 ```
 
 ## Common issue
-- `OpenOCD: GDB Server Quit Unexpectedly`
-Cause: existing `openocd` is already running.
-Fix:
+
+- Symptom: `OpenOCD: GDB Server Quit Unexpectedly`
+- Cause: existing `openocd` is already running.
+- Fix:
+
 ```bash
 pkill -f openocd
 pkill -f arm-none-eabi-gdb
 ```
-
