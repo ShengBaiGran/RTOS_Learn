@@ -1,0 +1,69 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "STM32G474 Launch (DAPLink + OpenOCD)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "servertype": "openocd",
+      "serverpath": "/usr/local/bin/openocd",
+      "armToolchainPath": "/Applications/ArmGNUToolchain/14.2.rel1/arm-none-eabi/bin",
+      "gdbPath": "/Applications/ArmGNUToolchain/14.2.rel1/arm-none-eabi/bin/arm-none-eabi-gdb",
+      "configFiles": [
+        "interface/cmsis-dap.cfg",
+        "target/stm32g4x.cfg"
+      ],
+      "interface": "swd",
+      "device": "STM32G474CEUx",
+      "executable": "${workspaceFolder}/build/G474_Baremetal_Blink.elf",
+      "svdFile": "${workspaceFolder}/.vscode/cmsis-svd-stm32/stm32g4/STM32G474.svd",
+      "preLaunchTask": "Build",
+      "runToEntryPoint": "main",
+      "openOCDLaunchCommands": [
+        "adapter speed 1000"
+      ]
+    },
+    {
+      "name": "STM32G474 Launch (Fault Breakpoints)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "servertype": "openocd",
+      "serverpath": "/usr/local/bin/openocd",
+      "armToolchainPath": "/Applications/ArmGNUToolchain/14.2.rel1/arm-none-eabi/bin",
+      "gdbPath": "/Applications/ArmGNUToolchain/14.2.rel1/arm-none-eabi/bin/arm-none-eabi-gdb",
+      "configFiles": [
+        "interface/cmsis-dap.cfg",
+        "target/stm32g4x.cfg"
+      ],
+      "interface": "swd",
+      "device": "STM32G474CEUx",
+      "executable": "${workspaceFolder}/build/G474_Baremetal_Blink.elf",
+      "svdFile": "${workspaceFolder}/.vscode/cmsis-svd-stm32/stm32g4/STM32G474.svd",
+      "preLaunchTask": "Build",
+      "runToEntryPoint": "main",
+      "openOCDLaunchCommands": [
+        "adapter speed 1000"
+      ],
+      "postLaunchCommands": [
+        "break HardFault_Handler",
+        "break Error_Handler"
+      ]
+    },
+    {
+      "name": "STM32G474 Attach (OpenOCD running on :3333)",
+      "type": "cortex-debug",
+      "request": "attach",
+      "cwd": "${workspaceFolder}",
+      "servertype": "external",
+      "gdbTarget": "localhost:3333",
+      "armToolchainPath": "/Applications/ArmGNUToolchain/14.2.rel1/arm-none-eabi/bin",
+      "gdbPath": "/Applications/ArmGNUToolchain/14.2.rel1/arm-none-eabi/bin/arm-none-eabi-gdb",
+      "interface": "swd",
+      "device": "STM32G474CEUx",
+      "executable": "${workspaceFolder}/build/G474_Baremetal_Blink.elf",
+      "svdFile": "${workspaceFolder}/.vscode/cmsis-svd-stm32/stm32g4/STM32G474.svd"
+    }
+  ]
+}

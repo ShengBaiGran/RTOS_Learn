@@ -1,0 +1,69 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "make -j8",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PATH": "/Applications/ArmGNUToolchain/14.2.rel1/arm-none-eabi/bin:${env:PATH}"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Clean",
+      "type": "shell",
+      "command": "make clean",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PATH": "/Applications/ArmGNUToolchain/14.2.rel1/arm-none-eabi/bin:${env:PATH}"
+        }
+      }
+    },
+    {
+      "label": "Rebuild",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean",
+        "Build"
+      ]
+    },
+    {
+      "label": "Flash (OpenOCD)",
+      "type": "shell",
+      "command": "openocd",
+      "args": [
+        "-f",
+        "interface/cmsis-dap.cfg",
+        "-f",
+        "target/stm32g4x.cfg",
+        "-c",
+        "adapter speed 1000",
+        "-c",
+        "program ${workspaceFolder}/build/G474_Baremetal_Blink.elf verify reset exit"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build + Flash + Run",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Build",
+        "Flash (OpenOCD)"
+      ]
+    }
+  ]
+}
