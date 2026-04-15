@@ -9,6 +9,8 @@
 
 - [调试流程](20_Knowledge/Debug_Workflow.md)
 - [时钟与复位](20_Knowledge/Clock_and_Reset.md)
+- [环境安装超详细手册](20_Knowledge/Environment_Install_Deep_Dive.md)
+- [VSCode 配置文件原理](20_Knowledge/VSCode_Config_Principles.md)
 
 ## Templates
 

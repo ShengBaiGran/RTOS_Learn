@@ -40,6 +40,11 @@ openocd --version
 - 调试文件：`/.vscode/launch.json`、`/.vscode/tasks.json`
 - SVD 文件：`/.vscode/cmsis-svd-stm32/stm32g4/STM32G474.svd`
 
+### 1.5 深度学习入口（建议先看）
+
+- 环境安装超详细手册：[Environment_Install_Deep_Dive.md](../20_Knowledge/Environment_Install_Deep_Dive.md)
+- VSCode 配置文件原理：[VSCode_Config_Principles.md](../20_Knowledge/VSCode_Config_Principles.md)
+
 ---
 
 ## 2. CubeMX 工程创建教程（Makefile）
