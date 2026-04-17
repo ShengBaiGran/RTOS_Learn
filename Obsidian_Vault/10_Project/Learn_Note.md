@@ -6,6 +6,9 @@
 - 编译：OK
 - 下载调试：OK（`DAPLink v2 + OpenOCD + Cortex-Debug`）
 - LED 点灯：OK（`PC6`）
+- UART 交互命令：OK（`on/off/toggle/status/help`）
+- Epaper 2.13 三色：OK（`SPI2`）
+- 默认自动刷屏压测：ON（`1000 ms` 周期）
 
 ---
 
@@ -179,5 +182,34 @@ pkill -f arm-none-eabi-gdb
 ## 7. 里程碑
 
 - [x] M1：基础移植成功（编译 + 下载 + 点灯）
+- [x] M1.5：串口命令行 + Epaper 2.13 三色接入
 - [ ] M2：任务通信机制跑通
 - [ ] M3：稳定运行 24h
+
+---
+
+## 8. Epaper 2.13 三色（WeAct）接入记录
+
+### 8.1 引脚映射（当前工程）
+
+- `PB13` -> `SPI2_SCK`
+- `PB15` -> `SPI2_MOSI`
+- `PB12` -> `CS`（GPIO）
+- `PB14` -> `DC`（GPIO）
+- `PA10` -> `RES`（GPIO）
+- `PA9` -> `BUSY`（GPIO 输入）
+
+### 8.2 当前功能
+
+- 已支持命令：`epdinit / epdclear / epdtest / epdtext / epdscroll / epdbusy / epdsleep`
+- 已支持自动刷屏长测：上电默认开启
+- 自动刷屏周期：`#define EPD_AUTO_REFRESH_INTERVAL_MS 1000U`
+- 自动刷屏开关命令：`epdautoon / epdautooff`
+
+### 8.3 长测建议
+
+- 建议至少跑 `24h`，观察：
+- `BUSY` 是否偶发超时
+- 是否出现鬼影残留异常
+- 局部区域是否出现对比度衰减
+- 建议每次改刷新策略后，重新做一次 `24h` 对比
