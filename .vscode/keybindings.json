@@ -1,0 +1,22 @@
+[
+  {
+    "key": "cmd+alt+b",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Build"
+  },
+  {
+    "key": "cmd+alt+f",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Flash (OpenOCD)"
+  },
+  {
+    "key": "cmd+alt+r",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Build + Flash + Run"
+  },
+  {
+    "key": "cmd+alt+c",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Clean"
+  }
+]
